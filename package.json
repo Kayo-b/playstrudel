@@ -1,0 +1,17 @@
+{
+  "name": "playstrudel",
+  "version": "1.0.0",
+  "description": "Strudel + Playwright setup template to enable writing code on an ide of choice an running it on strudel through playwright.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^24.3.0"
+  },
+  "dependencies": {
+    "k6": "^0.0.0"
+  }
+}
