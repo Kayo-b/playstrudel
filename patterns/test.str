@@ -1,0 +1,26 @@
+register('slowLFO', (pat) => pat.lpf(square.range(400, 2000)).slow(1.5))
+register('fastLFO', (pat) => pat.lpf(square.range(400, 2000)).fast(1.5))
+stack(
+  note("g3 eb3 eb3"),
+  note("g4 bb4 d5 g5"),
+  note("g4 d4 eb4 - - d4")
+)
+.s("gm_pad_warm")
+// .s("sawtooth")
+.partials([1, 0.8, 0,7])
+.add(note(0.05)) // slight detune
+.slowLFO()
+.lpq(3)
+.lpenv(1)
+.lpa(0.5)
+.lpd(1.5)
+.lps(0.3)
+.room(1.0)
+.gain(0.5)
+
+
+// note("c2")
+//   .s("sawtooth")
+//   .lpf(sine.range(200, 3000).fast(8))
+//   // .segment(2) // creates continuous sound
+//   .gain(0.5)
