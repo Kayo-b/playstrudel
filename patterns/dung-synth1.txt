@@ -1,0 +1,32 @@
+// setcpm(20)
+
+const melody = n("0 2 4 ~ 3 2 0 ~")
+  .scale("a2:aeolian")
+  .s("gm_synth_bass_2:1")
+  .cutoff(2000)
+  .room(.7)
+  .size(5)
+  .gain("<0.05 0.05 0.05 0.15  0.15  0.15  0.15 0.3 0.35 0.4 0.45 0.5!999>")
+
+const drone = note("a1")
+  .s("sine")
+  .sustain(1)
+  .room(.9)
+  .gain(.25)
+
+const drums = s("gm_taiko_drum")
+  .struct("x ~ ~ < ~ x >")
+  .every(4, x => x.fast(2))
+  .gain(1.45)
+  .room(0.7)
+const string1 = s("strings:4").decay(1).gain(0.1)
+const string2 = s("strings:9").gain(0.1).decay(.7).sustain(0.1)
+const string3 = s("strings:10").gain(0.1).sustain(0.3)
+const string4 = s("strings:10").gain(0.1).sustain(0.3)
+const stringSeq = note("~ b1 ~ < ~ ~ >").s("strings:4").decay(1).gain(0.4)
+arrange(
+  [4, stack(drums)],
+  [24, stack(drums, melody)],
+)
+
+/

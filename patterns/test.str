@@ -1,26 +1,95 @@
-register('slowLFO', (pat) => pat.lpf(square.range(400, 2000)).slow(1.5))
-register('fastLFO', (pat) => pat.lpf(square.range(400, 2000)).fast(1.5))
-stack(
-  note("g3 eb3 eb3"),
-  note("g4 bb4 d5 g5"),
-  note("g4 d4 eb4 - - d4")
-)
+register('slowLFO', (pat) => pat.lpf(sine.range(400, 1200).slow(1.5)))
+register('fastLFO', (pat) => pat.lpf(square.range(400, 2000).fast(1.5)))
+
+// let note1 = ""
+let pad = (val, rev = 0.1, revSize = 0) => {
+  return note(val) 
+.s("gm_pad_warm")
+.partials([1, 0.8, 0,7])
+.add(note(0.02))
+.slowLFO()
+.lpq(3)
+.lpenv(0.1)
+.lpa(0.5)
+.lpd(1.5)
+.lps(0.3)
+.room(rev)
+.roomsize(revSize)
+.gain(0.5)
+.attack(2)
+.decay(9)
+.release(4)
+.sustain(0.2)
+} 
+let bd =
+sound("bd")
+.bank("RolandTR808")
+.crush(12)
+.distort(2)
+.room(0.5)
+
+let s1 = note("c2 b2 a2 a1 b2 c3")
+.s("keys:5")
+.slow(1.2)
+
+let pad1 = note("a1")
+.s("pad:5")
+.gain(0.1)
+
+let m1 = note("d3")
+.s("lead:1")
+
+note("g4 bb4 d5 g5")
 .s("gm_pad_warm")
 // .s("sawtooth")
 .partials([1, 0.8, 0,7])
 .add(note(0.05)) // slight detune
-.slowLFO()
 .lpq(3)
 .lpenv(1)
 .lpa(0.5)
 .lpd(1.5)
 .lps(0.3)
-.room(1.0)
+.room(0.5)
 .gain(0.5)
+let piano = 
+note('gm_synth_strings_2')
 
+let m3 = 
+note("g2 d2 ebe - - d1")
+// .s("gm_pad_warm")
+.s("square")
+// .partials([1, 0.5])
+.add(note(0.05)) // slight detune
+.lpq(3)
+.lpenv(1)
+.lpa(0.9)
+.lpd(1.5)
+.lps(0.3)
+.room(0.5)
+.gain(1)
 
-// note("c2")
-//   .s("sawtooth")
-//   .lpf(sine.range(200, 3000).fast(8))
-//   // .segment(2) // creates continuous sound
-//   .gain(0.5)
+// let drum1 =
+// note('c3')
+// .
+
+arrange(
+  // [1, stack(s1, pad1)],
+  [2, stack(piano)]
+  // [4, stack(pad1)],
+  // [1, stack(pad("b2",0.2, 0))], 
+  // [8, stack(pad('a2',0))],
+  // [12, stack(pad('c2',0.1))], 
+  // [8, stack(m2.lastOf(8, x => x.room(2).roomsize(3)))],
+  // [18,stack(m1,m2,m3)]
+)
+// note("g2 eb3 f2")
+// .s("gm_pad_warm")
+// .partials([1, 0.8, 0,7])
+// .add(note(0.05)) // slight detune
+// .lpq(3)
+// .lpenv(1)
+// .lpa(0.5)
+// .lpd(1.5)
+// .lps(0.3)
+// .room(0.5)
+// .gain(0.5)

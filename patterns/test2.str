@@ -1,0 +1,12 @@
+note("g2 eb3 f2")
+.s("gm_pad_warm")
+.partials([1, 0.8, 0,7])
+.add(note(0.05)) // slight detune
+.lpq(3)
+.lpenv(1)
+.lpa(0.5)
+.lpd(1.5)
+.lps(0.3)
+.room(0.5)
+.gain(0.5)
+
